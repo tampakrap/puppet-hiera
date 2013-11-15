@@ -13,7 +13,7 @@ class hiera (
   $deepmerge_ensure          = 'present',
   $deepmerge_gentoo_keywords = $hiera::params::deepmerge_gentoo_keywords,
   $deepmerge_install_options = $hiera::params::deepmerge_install_options,
-) {
+) inherits hiera::params {
 
   #validate merge_behavior
 
