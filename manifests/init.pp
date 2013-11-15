@@ -31,7 +31,7 @@ class hiera (
     group   => 'root',
     mode    => 0644,
     ensure  => file,
-    content => template("${module_name}/puppet/hiera.yaml.erb"),
+    content => template("${module_name}/hiera.yaml.erb"),
     notify  => Service[$service],
   }
 
