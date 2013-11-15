@@ -1,6 +1,6 @@
 class hiera (
   $backends                  = ['yaml'],
-  $datadir                   = {'yaml': '/etc/puppet/hieradata'}
+  $datadir                   = {'yaml': '/etc/puppet/hieradata'},
   $hierarchy                 = ['common'],
   $merge_behavior            = 'native',
   $hierayaml_link            = true,
