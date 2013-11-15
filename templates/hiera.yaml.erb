@@ -1,0 +1,14 @@
+---
+<% unless @backends.empty? -%>
+:backends:
+<%= @backends.to_yaml.split("\n")[1..-1].join("\n") %>
+<% end -%>
+:yaml:
+  :datadir: "<%= @datadir.gsub(/_percent_/, '%') %>"
+<% unless @hierarchy.empty? -%>
+:hierarchy:
+<%= @hierarchy.to_yaml.split("\n")[1..-1].join("\n").gsub(/_percent_/, '%') %>
+<% end -%>
+<% unless @merge_behavior.empty? -%>
+:merge_behavior: <%= @merge_behavior %>
+<% end -%>
