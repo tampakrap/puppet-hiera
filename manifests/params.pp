@@ -15,7 +15,11 @@ class hiera::params {
       $deepmerge_pkgname = 'dev-ruby/deep_merge'
     }
     'redhat': {}
-    'suse': {}
+    'suse': {
+      $pkgname           = 'rubygem-hiera'
+      $provider          = 'zypper'
+      $deepmerge_pkgname = 'rubygem-deep_merge'
+    }
     'default': { fail("$::osfamily is not supported") }
   }
 
