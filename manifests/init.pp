@@ -4,42 +4,43 @@ class hiera (
   $hierarchy                 = ['common'],
   $merge_behavior            = 'native',
   $hierayaml_link            = true,
-  $pkgname                   = $hiera::params::pkgname,
+  $package_name              = $hiera::params::package_name,
   $ensure                    = 'present',
-  $gentoo_keywords           = $hiera::params::gentoo_keywords,
-  $install_options           = $hiera::params::install_options,
-  $provider                  = $hiera::params::provider,
-  $deepmerge_pkgname         = $hiera::params::deepmerge_pkgname,
+  $install_options           = undef,
+  $provider                  = undef,
+  $restart_puppetmaster      = false,
+  $deepmerge_package_name    = $hiera::params::deepmerge_package_name,
   $deepmerge_ensure          = 'present',
-  $deepmerge_gentoo_keywords = $hiera::params::deepmerge_gentoo_keywords,
-  $deepmerge_install_options = $hiera::params::deepmerge_install_options,
+  $deepmerge_install_options = undef,
 ) inherits hiera::params {
 
   #validate merge_behavior
 
   include hiera::package
-  include puppet::server
 
-  case $puppet::server::servertype {
-    'passenger': { $service = 'httpd' }
-    'unicorn', 'thin': { $service = 'nginx' }
-    'standalone': { $service = $puppet::server::master_service }
+  if $restart_puppetmaster {
+    include puppet::server
+
+    case $puppet::server::servertype {
+      'passenger': { $service = 'httpd' }
+      'unicorn', 'thin': { $service = 'nginx' }
+      'standalone': { $service = $puppet::server::master_service }
+    }
   }
 
   file { '/etc/puppet/hiera.yaml':
     owner   => 'root',
     group   => 'root',
-    mode    => 0644,
+    mode    => '0644',
     ensure  => file,
     content => template("${module_name}/hiera.yaml.erb"),
     notify  => Service[$service],
   }
 
-  if $hierayaml_link == 'true' {
+  if $hierayaml_link {
     file { '/etc/hiera.yaml':
       target => '/etc/puppet/hiera.yaml',
       ensure => link,
     }
   }
-
 }
