@@ -1,6 +1,5 @@
 class hiera (
-  $backends                  = ['yaml'],
-  $datadir                   = {yaml => '/etc/puppet/hieradata'},
+  $backends                  = {'yaml' => '/etc/puppet/hieradata'},
   $hierarchy                 = ['common'],
   $merge_behavior            = 'native',
   $hierayaml_link            = true,
@@ -12,6 +11,9 @@ class hiera (
   $deepmerge_ensure          = 'present',
   $deepmerge_install_options = undef,
 ) inherits hiera::params {
+
+  if $backends { validate_hash[$backends] )
+  if $hierarchy { validate_array[$hierarchy] )
 
   if $merge_behavior {
     $merge_behavior_options = ['native', 'deep', 'deeper']

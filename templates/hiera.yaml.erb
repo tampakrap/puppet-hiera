@@ -1,10 +1,13 @@
 ---
 <% unless @backends.empty? -%>
 :backends:
-<%= @backends.to_yaml.split("\n")[1..-1].join("\n") %>
+<%= @backends.keys.to_yaml.split("\n")[1..-1].join("\n") %>
+<% @backends.each_pair do |backend,data| -%>
+:<%= backend %>:
+<% data.each_pair do |key,value| -%>
+  :<%= key %>: <%= value.gsub(/_percent_/, '%') %>
 <% end -%>
-:yaml:
-  :datadir: "<%= @datadir.gsub(/_percent_/, '%') %>"
+<% end -%>
 <% unless @hierarchy.empty? -%>
 :hierarchy:
 <%= @hierarchy.to_yaml.split("\n")[1..-1].join("\n").gsub(/_percent_/, '%') %>
