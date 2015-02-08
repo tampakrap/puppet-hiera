@@ -39,7 +39,7 @@ The above will put the following contents in `hiera.yaml`:
       - yaml
       - eyaml
     :yaml:
-      :datadir: "/etc/puppet/environments/%{::environment/hieradata"
+      :datadir: /etc/puppet/environments/%{::environment}/hieradata
     :eyaml:
       :datadir: /etc/puppet/secret_hieradata
       :pkcs7_private_key: /path/to/private_key.pkcs7.pem
@@ -87,9 +87,9 @@ Whether to create or not a symlink to `/etc/hiera.yaml`, for cli usage. Default:
 #### `config_path`
 The absolute path to `hiera.yaml`. Default: `/etc/puppet/hiera.yaml`
 #### `config_owner`
-The owner of the `hiera.yaml` file. Default: root
+The owner of the `hiera.yaml` file. Default: puppet
 #### `config_group`
-The group of the `hiera.yaml` file. Default: root
+The group of the `hiera.yaml` file. Default: puppet
 #### `config_mode`
 The mode of the `hiera.yaml` file. Default: 0640
 #### `package_name`
