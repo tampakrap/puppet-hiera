@@ -14,7 +14,10 @@ class hiera (
   $deepmerge_install_options = undef,
 ) inherits hiera::params {
 
-  #validate merge_behavior
+  if $merge_behavior {
+    $merge_behavior_options = ['native', 'deep', 'deeper']
+    validate_re($merge_behavior, $merge_behavior_options)
+  }
 
   include hiera::package
 
