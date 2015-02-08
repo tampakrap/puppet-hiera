@@ -6,6 +6,7 @@ class hiera (
   $backends                   = {'yaml' => {'datadir' => '/etc/puppet/hieradata'} },
   $hierarchy                  = ['common'],
   $merge_behavior             = 'native',
+  $logger                     = undef,
   $config_link                = true,
   $config_path                = '/etc/puppet/hiera.yaml',
   $config_owner               = 'root',
