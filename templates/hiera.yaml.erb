@@ -8,6 +8,7 @@
   :<%= key %>: <%= value.gsub(/_percent_/, '%') %>
 <% end -%>
 <% end -%>
+<% end -%>
 <% unless @hierarchy.empty? -%>
 :hierarchy:
 <%= @hierarchy.to_yaml.split("\n")[1..-1].join("\n").gsub(/_percent_/, '%') %>

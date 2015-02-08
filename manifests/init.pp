@@ -1,5 +1,9 @@
+# == Class: hiera
+#
+# TODO
+#
 class hiera (
-  $backends                   = {'yaml' => {'datadir' =>'/etc/puppet/hieradata'} },
+  $backends                   = {'yaml' => {'datadir' => '/etc/puppet/hieradata'} },
   $hierarchy                  = ['common'],
   $merge_behavior             = 'native',
   $config_link                = true,
@@ -27,6 +31,7 @@ class hiera (
 
   if $backends { validate_hash[$backends] }
   if $hierarchy { validate_array[$hierarchy] }
+  if $config_link { validate_bool[$config_link] }
 
   if $merge_behavior {
     $merge_behavior_options = ['native', 'deep', 'deeper']
@@ -36,17 +41,17 @@ class hiera (
   include hiera::package
 
   file { $config_path:
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
-    ensure  => file,
     content => template("${module_name}/hiera.yaml.erb"),
   }
 
-  if $hierayaml_link {
+  if $config_link {
     file { '/etc/hiera.yaml':
-      target => $config_path,
       ensure => link,
+      target => $config_path,
     }
   }
 }

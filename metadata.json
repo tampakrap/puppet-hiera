@@ -1,0 +1,48 @@
+{
+  "name": "tampakrap-hiera",
+  "version": "0.1.0",
+  "author": ["Theo Chatzimichos"],
+  "license": "Apache-2.0",
+  "summary": "todo",
+  "source": "https://github.com/tampakrap/puppet-hiera",
+  "project_page": "https://github.com/tampakrap/puppet-hiera",
+  "issues_url": "https://github.com/tampakrap/puppet-hiera/issues",
+  "tags": ["hiera"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [ "7.8" ]
+    },
+    {
+      "operatingsystem": "Gentoo"
+    },
+    {
+      "operatingsystem": "openSUSE",
+      "operatingsystemrelease": [ "13.2" ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [ "6.0" ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [ "12" ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ "14.10" ]
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.5.0"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ]
+}

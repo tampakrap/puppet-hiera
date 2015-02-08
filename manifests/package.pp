@@ -14,20 +14,20 @@ class hiera::package {
     }
   }
 
-  if 'gpg' in $hiera::backends.keys {
+  if 'gpg' in keys($hiera::backends) {
     package { $hiera::hiera_gpg_package_name:
       ensure          => $hiera::hiera_gpg_ensure,
       provider        => $hiera::provider,
       install_options => $hiera::hiera_gpg_install_options,
     }
-  } elsif 'eyaml' in $hiera::backends.keys {
+  } elsif 'eyaml' in keys($hiera::backends) {
     package { $hiera::eyaml_package_name:
       ensure          => $hiera::eyaml_ensure,
       provider        => $hiera::provider,
       install_options => $hiera::eyaml_install_options,
     }
 
-    if 'gpg_gnupghome' in $hiera::backends.keys['eyaml'].values {
+    if 'gpg_gnupghome' in keys($hiera::backends['eyaml']) {
       package { $hiera::eyaml_package_name:
         ensure          => $hiera::eyaml_gpg_ensure,
         provider        => $hiera::provider,
