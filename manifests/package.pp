@@ -14,7 +14,7 @@ class hiera::package {
     }
   }
 
-  if 'hiera-gpg' in $hiera::backends.keys {
+  if 'gpg' in $hiera::backends.keys {
     package { $hiera::hiera_gpg_package_name:
       ensure          => $hiera::hiera_gpg_ensure,
       provider        => $hiera::provider,
