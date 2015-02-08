@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": ["Theo Chatzimichos"],
   "license": "Apache-2.0",
-  "summary": "todo",
+  "summary": "Manage hiera packages and hiera.yaml config file",
   "source": "https://github.com/tampakrap/puppet-hiera",
   "project_page": "https://github.com/tampakrap/puppet-hiera",
   "issues_url": "https://github.com/tampakrap/puppet-hiera/issues",

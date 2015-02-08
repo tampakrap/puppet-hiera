@@ -1,5 +1,5 @@
+# Private class for packages' installations
 class hiera::package {
-
   package { $hiera::package_name:
     ensure          => $hiera::ensure,
     provider        => $hiera::provider,

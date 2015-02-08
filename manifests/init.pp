@@ -1,6 +1,123 @@
-# == Class: hiera
+# = Class: hiera
 #
-# TODO
+# Manage hiera packages and hiera.yaml config file
+#
+# == Parameters:
+#
+# [*backends*]
+# A hash with the hiera backends as key, and a hash of their data as value
+# Default: {'yaml' => {'datadir' => '/etc/puppet/hieradata'} }
+#
+# [*hierarchy*]
+# A list with the hierarchy.
+# Default: empty list
+#
+# [*merge_behavior*]
+# The merge behavior setting in the hiera.yaml
+# Default: empty string
+#
+# [*logger*]
+# The logger setting in the hiera.yaml
+# Default: empty string
+#
+# [*config_link*]
+# Whether to create or not a symlink to /etc/hiera.yaml, for cli usage
+# Default: true
+#
+# [*config_path*]
+# The absolute path to hiera.yaml
+# Default: /etc/puppet/hiera.yaml
+#
+# [*config_owner*]
+# The owner of the hiera.yaml file
+# Default: root
+#
+# [*config_group*]
+# The group of the hiera.yaml file
+# Default: root
+#
+# [*config_mode*]
+# The mode of the hiera.yaml file
+# Default: 0640
+#
+# [*package_name*]
+# The name of the hiera package
+# Default: hiera or platform specific
+#
+# [*ensure*]
+# The ensure value of the hiera package
+# Default: present
+#
+# [*install_options*]
+# The install_options of the hiera package
+# Default: undef
+#
+# [*provider*]
+# The package provider of all the packages
+# Default: undef
+#
+# [*deep_merge_package_name*]
+# The name of the deep_merge package
+# Default: deep_merge or platform specific
+#
+# [*deep_merge_ensure*]
+# The ensure value of the deep_merge package
+# Default: present
+#
+# [*deep_merge_install_options*]
+# The install_options of the deep_merge package
+# Default: undef
+#
+# [*eyaml_package_name*]
+# The name of the eyaml package
+# Default: hiera-eyaml or platform specific
+#
+# [*eyaml_ensure*]
+# The ensure value of the eyaml package
+# Default: present
+#
+# [*eyaml_install_options*]
+# The install_options of the eyaml package
+# Default: undef
+#
+# [*eyaml_gpg_package_name*]
+# The name of the eyaml-gpg package
+# Default: hiera-eyaml-gpg or platform specific
+#
+# [*eyaml_gpg_ensure*]
+# The ensure value of the eyaml-gpg package
+# Default: present
+#
+# [*eyaml_gpg_install_options*]
+# The install_options of the eyaml-gpg package
+# Default: undef
+#
+# [*hiera_gpg_package_name*]
+# The name of the hiera-gpg package
+# Default: hiera-gpg or platform specific
+#
+# [*hiera_gpg_ensure*]
+# The ensure value of the hiera-gpg package
+# Default: present
+#
+# [*hiera_gpg_install_options*]
+# The install_options of the hiera-gpg package
+# Default: undef
+#
+# == Example:
+#
+#    class { 'hiera':
+#      hierarchy => [
+#        'node/_percent_{::fqdn}',
+#        'common',
+#      ],
+#      merge_behavior => 'deep',
+#    }
+#
+# == See also:
+#
+# tests/init.pp for a more complex scenario
+#
 #
 class hiera (
   $backends                   = {'yaml' => {'datadir' => '/etc/puppet/hieradata'} },

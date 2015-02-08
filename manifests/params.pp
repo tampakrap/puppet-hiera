@@ -1,3 +1,4 @@
+# Private class for platform specific values
 class hiera::params {
   case $::osfamily {
     default: {
