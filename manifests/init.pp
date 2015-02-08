@@ -8,7 +8,6 @@ class hiera (
   $ensure                    = 'present',
   $install_options           = undef,
   $provider                  = undef,
-  $restart_puppetmaster      = false,
   $deepmerge_package_name    = $hiera::params::deepmerge_package_name,
   $deepmerge_ensure          = 'present',
   $deepmerge_install_options = undef,
@@ -20,16 +19,6 @@ class hiera (
   }
 
   include hiera::package
-
-  if $restart_puppetmaster {
-    include puppet::server
-
-    case $puppet::server::servertype {
-      'passenger': { $service = 'httpd' }
-      'unicorn', 'thin': { $service = 'nginx' }
-      'standalone': { $service = $puppet::server::master_service }
-    }
-  }
 
   file { '/etc/puppet/hiera.yaml':
     owner   => 'root',
