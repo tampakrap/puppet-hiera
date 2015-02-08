@@ -28,7 +28,7 @@ class hiera::package {
     }
 
     if 'gpg_gnupghome' in keys($hiera::backends['eyaml']) {
-      package { $hiera::eyaml_package_name:
+      package { $hiera::eyaml_gpg_package_name:
         ensure          => $hiera::eyaml_gpg_ensure,
         provider        => $hiera::provider,
         install_options => $hiera::eyaml_gpg_install_options,

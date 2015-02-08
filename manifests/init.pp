@@ -4,9 +4,9 @@
 #
 class hiera (
   $backends                   = {'yaml' => {'datadir' => '/etc/puppet/hieradata'} },
-  $hierarchy                  = ['common'],
-  $merge_behavior             = 'native',
-  $logger                     = undef,
+  $hierarchy                  = [],
+  $merge_behavior             = '',
+  $logger                     = '',
   $config_link                = true,
   $config_path                = '/etc/puppet/hiera.yaml',
   $config_owner               = 'root',
@@ -30,9 +30,9 @@ class hiera (
   $hiera_gpg_install_options  = undef,
 ) inherits hiera::params {
 
-  if $backends { validate_hash[$backends] }
-  if $hierarchy { validate_array[$hierarchy] }
-  if $config_link { validate_bool[$config_link] }
+  if $backends { validate_hash($backends) }
+  if $hierarchy { validate_array($hierarchy) }
+  validate_bool($config_link)
 
   if $merge_behavior {
     $merge_behavior_options = ['native', 'deep', 'deeper']
