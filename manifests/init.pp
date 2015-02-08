@@ -2,7 +2,11 @@ class hiera (
   $backends                  = {'yaml' => '/etc/puppet/hieradata'},
   $hierarchy                 = ['common'],
   $merge_behavior            = 'native',
-  $hierayaml_link            = true,
+  $config_link               = true,
+  $config_path               = '/etc/puppet/hiera.yaml',
+  $config_owner              = 'root',
+  $config_group              = 'root',
+  $config_mode               = '0640',
   $package_name              = $hiera::params::package_name,
   $ensure                    = 'present',
   $install_options           = undef,
@@ -22,10 +26,10 @@ class hiera (
 
   include hiera::package
 
-  file { '/etc/puppet/hiera.yaml':
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+  file { $config_path:
+    owner   => $config_owner,
+    group   => $config_group,
+    mode    => $config_mode,
     ensure  => file,
     content => template("${module_name}/hiera.yaml.erb"),
     notify  => Service[$service],
@@ -33,7 +37,7 @@ class hiera (
 
   if $hierayaml_link {
     file { '/etc/hiera.yaml':
-      target => '/etc/puppet/hiera.yaml',
+      target => $config_path,
       ensure => link,
     }
   }
