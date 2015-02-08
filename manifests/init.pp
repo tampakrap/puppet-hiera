@@ -32,7 +32,6 @@ class hiera (
     mode    => $config_mode,
     ensure  => file,
     content => template("${module_name}/hiera.yaml.erb"),
-    notify  => Service[$service],
   }
 
   if $hierayaml_link {
