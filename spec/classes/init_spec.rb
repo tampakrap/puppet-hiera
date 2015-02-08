@@ -9,7 +9,7 @@ end
 
 describe 'hiera' do
   context "when using defaults" do
-    it_behaves_like 'hiera examples'
+    it_behaves_like 'everywhere'
     it { should_not contain_package('hiera-gpg') }
     it { should_not contain_package('hiera-eyaml') }
     it { should_not contain_package('hiera-eyaml-gpg') }
@@ -29,7 +29,7 @@ describe 'hiera' do
             :config_link => config_link,
           }
         end
-        it_behaves_like 'hiera examples'
+        it_behaves_like 'everywhere'
         it { should contain_file('/etc/somewhere/else/hiera.yaml') }
         it {
           is_expected.to contain_file('/etc/hiera.yaml').with_target('/etc/somewhere/else/hiera.yaml') if config_link == true
@@ -42,7 +42,7 @@ describe 'hiera' do
   ['native', 'deep', 'deeper'].each do |merge_behavior|
     context "when specifying #{merge_behavior} merge_behavior" do
       let(:params) { {:merge_behavior => merge_behavior} }
-      it_behaves_like 'hiera examples'
+      it_behaves_like 'everywhere'
       it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n:yaml:\n  :datadir: /etc/puppet/hieradata\n:merge_behavior: #{merge_behavior}\n") }
       it {
         is_expected.to contain_package('deep_merge') if merge_behavior == 'deep'
@@ -54,7 +54,7 @@ describe 'hiera' do
 
   context "when specifying hierarchy" do
     let(:params) { {:hierarchy => ['common']} }
-    it_behaves_like 'hiera examples'
+    it_behaves_like 'everywhere'
     it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n:yaml:\n  :datadir: /etc/puppet/hieradata\n:hierarchy:\n  - common\n") }
 
     context "when using the percent hack" do
@@ -66,7 +66,7 @@ describe 'hiera' do
   context "when specifying backend" do
     context "when using the percent hack" do
       let(:params) { {:backends => {'yaml' => {'datadir' => '/etc/puppet/environments/_percent_{::environment}/hieradata'} } } }
-      it_behaves_like 'hiera examples'
+      it_behaves_like 'everywhere'
       it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n:yaml:\n  :datadir: /etc/puppet/environments/%{::environment}/hieradata\n") }
     end
 
@@ -75,7 +75,7 @@ describe 'hiera' do
         'datadir' => '/etc/puppet/hieradata',
         'additional' => 'something'
       } } } }
-      it_behaves_like 'hiera examples'
+      it_behaves_like 'everywhere'
       it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n:yaml:\n  :datadir: /etc/puppet/hieradata\n  :additional: something\n") }
     end
 
@@ -84,13 +84,13 @@ describe 'hiera' do
         'yaml' => {'datadir' => '/etc/puppet/hieradata'},
         'json' => {'datadir' => '/etc/puppet/jsonhieradata'}
       } } }
-      it_behaves_like 'hiera examples'
+      it_behaves_like 'everywhere'
       it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n  - json\n:yaml:\n  :datadir: /etc/puppet/hieradata\n:json:\n  :datadir: /etc/puppet/jsonhieradata\n") }
     end
 
     context "when specifying gpg backend" do
       let(:params) { {:backends => {'gpg' => {'data' => 'fake'} } } }
-      it_behaves_like 'hiera examples'
+      it_behaves_like 'everywhere'
       it { should contain_package('hiera-gpg') }
     end
 
