@@ -11,7 +11,7 @@ class hiera (
   $ensure                     = 'present',
   $install_options            = undef,
   $provider                   = undef,
-  $deep_merge_package_name    = $hiera::params::deepmerge_package_name,
+  $deep_merge_package_name    = $hiera::params::deep_merge_package_name,
   $deep_merge_ensure          = 'present',
   $deep_merge_install_options = undef,
   $eyaml_package_name         = $hiera::params::eyaml_package_name,

@@ -7,10 +7,10 @@ class hiera::package {
   }
 
   if $hiera::merge_behavior in ['deep', 'deeper'] {
-    package { $hiera::deepmerge_package_name:
-      ensure          => $hiera::deepmerge_ensure,
+    package { $hiera::deep_merge_package_name:
+      ensure          => $hiera::deep_merge_ensure,
       provider        => $hiera::provider,
-      install_options => $hiera::deepmerge_install_options,
+      install_options => $hiera::deep_merge_install_options,
     }
   }
 
