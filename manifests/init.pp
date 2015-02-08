@@ -30,11 +30,11 @@
 #
 # [*config_owner*]
 # The owner of the hiera.yaml file
-# Default: root
+# Default: puppet
 #
 # [*config_group*]
 # The group of the hiera.yaml file
-# Default: root
+# Default: puppet
 #
 # [*config_mode*]
 # The mode of the hiera.yaml file
@@ -126,8 +126,8 @@ class hiera (
   $logger                     = '',
   $config_link                = true,
   $config_path                = '/etc/puppet/hiera.yaml',
-  $config_owner               = 'root',
-  $config_group               = 'root',
+  $config_owner               = 'puppet',
+  $config_group               = 'puppet',
   $config_mode                = '0640',
   $package_name               = $hiera::params::package_name,
   $ensure                     = 'present',
