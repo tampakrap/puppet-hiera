@@ -4,7 +4,8 @@ puppet-hiera
 [![Build Status](https://travis-ci.org/tampakrap/puppet-hiera.png?branch=master)](https://travis-ci.org/tampakrap/puppet-hiera)
 [![Puppet Forge](http://img.shields.io/puppetforge/v/tampakrap/hiera.svg)](https://forge.puppetlabs.com/tampakrap/hiera)
 
-Manage hiera packages and hiera.yaml config file
+Manage hiera packages and hiera.yaml config file.
+
 This module is heavily inspired by [hunner/hiera](https://github.com/hunner/puppet-hiera)
 
 ## Usage
@@ -63,31 +64,31 @@ The above will put the following contents in `hiera.yaml`:
 ### Classes
 
 #### Public Classes
-- hiera: Main class to configure hiera
+- `hiera`: Main class to configure hiera
 
 #### Private Classes
-- hiera::params: Handles variable conditionals
-- hiera::package: Handles packages' installations
+- `hiera::params`: Handles variable conditionals
+- `hiera::package`: Handles packages' installations
 
 ### Parameters
 
 The following parameters are available for the hiera class:
 
-##### `backends`
+#### `backends`
 A hash with the hiera backends as key, and a hash of their data as value. Default: `{'yaml' => {'datadir' => '/etc/puppet/hieradata'} }`
-##### `hierarchy`
+#### `hierarchy`
 A list with the hierarchy. Default: empty list
-##### `merge_behavior`
+#### `merge_behavior`
 The merge behavior setting in the hiera.yaml. Default: empty string
-##### `logger`
+#### `logger`
 The logger setting in the `hiera.yaml`. Default: empty string
-##### `config_link`
+#### `config_link`
 Whether to create or not a symlink to `/etc/hiera.yaml`, for cli usage. Default: true
-##### `config_path`
+#### `config_path`
 The absolute path to `hiera.yaml`. Default: `/etc/puppet/hiera.yaml`
-##### `config_owner`
+#### `config_owner`
 The owner of the `hiera.yaml` file. Default: root
-##### `config_group`
+#### `config_group`
 The group of the `hiera.yaml` file. Default: root
 #### `config_mode`
 The mode of the `hiera.yaml` file. Default: 0640
