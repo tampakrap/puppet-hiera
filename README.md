@@ -31,6 +31,7 @@ config. For a more complex scenario:
       logger         => 'console',
       provider       => 'gem',
       ensure         => 'latest',
+    }
 
 The above will put the following contents in `hiera.yaml`:
 
@@ -50,8 +51,6 @@ The above will put the following contents in `hiera.yaml`:
       - common
     :merge_behavior: deeper
     :logger: console
-    :provider: gem
-    :ensure: latest
 
 * In case you specify the `gpg` or `eyaml` backends, this module will
   automatically install the `hiera-gpg` or the `hiera-eyaml` package
