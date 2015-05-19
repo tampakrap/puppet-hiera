@@ -101,7 +101,7 @@ describe 'hiera' do
         it { should_not contain_package('hiera-eyaml-gpg') }
       end
 
-      context "without eyaml-gpg" do
+      context "with eyaml-gpg" do
         let(:params) { {:backends => {'eyaml' => {
           'data'          => 'fake',
           'gpg_gnupghome' => '/home/user/.gnupg'
