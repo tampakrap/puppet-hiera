@@ -37,6 +37,10 @@
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 4.5.0"
+    },
+    {
+      "name": "ploperations/puppet",
+      "version_requirement": ">= 0.14.0"
     }
   ],
   "requirements": [

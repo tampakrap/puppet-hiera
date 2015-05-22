@@ -1,5 +1,9 @@
 fixtures:
   forge_modules:
+    concat: "puppetlabs/concat"
+    inifile: "puppetlabs/inifile"
     stdlib: "puppetlabs/stdlib"
+  repositories:
+    puppet: "git://github.com/puppetlabs-operations/puppet-puppet"
   symlinks:
     hiera: "#{source_dir}"
