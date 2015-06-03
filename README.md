@@ -128,3 +128,9 @@ The name of the hiera-gpg package. Default: hiera-gpg or platform specific
 The ensure value of the hiera-gpg package. Default: present
 #### `hiera_gpg_install_options`
 The install\_options of the hiera-gpg package. Default: undef
+#### `ruby_gpg_package_name`
+The name of the ruby_gpg package. Default: gpgme or platform specific
+#### `ruby_gpg_ensure`
+The ensure value of the ruby_gpg package. Default: present
+#### `ruby_gpg_install_options`
+The install\_options of the ruby_gpg package. Default: undef
