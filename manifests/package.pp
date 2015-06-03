@@ -33,10 +33,10 @@ class hiera::package {
         provider        => $hiera::provider,
         install_options => $hiera::eyaml_gpg_install_options,
       }
-      package { $ruby_gpg_package_name:
-        ensure          => $ruby_gpg_package_name,
-        provider        => $ruby_gpg_ensure,
-        install_options => $ruby_gpg_install_options,
+      package { $hiera::ruby_gpg_package_name:
+        ensure          => $hiera::ruby_gpg_ensure,
+        provider        => $hiera::provider,
+        install_options => $hiera::ruby_gpg_install_options,
       }
     }
   }
