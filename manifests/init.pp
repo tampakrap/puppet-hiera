@@ -145,6 +145,10 @@ class hiera (
   $hiera_gpg_package_name     = $hiera::params::hiera_gpg_package_name,
   $hiera_gpg_ensure           = 'present',
   $hiera_gpg_install_options  = undef,
+  $ruby_gpg_package_name      = $hiera::params::ruby_gpg_package_name,
+  $ruby_gpg_ensure            = 'present',
+  $ruby_gpg_install_options   = undef,
+
 ) inherits hiera::params {
 
   if $backends { validate_hash($backends) }
