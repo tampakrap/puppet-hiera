@@ -13,6 +13,7 @@ describe 'hiera' do
     it { should_not contain_package('hiera-gpg') }
     it { should_not contain_package('hiera-eyaml') }
     it { should_not contain_package('hiera-eyaml-gpg') }
+    it { should_not contain_package('gpgme') }
     it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n:yaml:\n  :datadir: /etc/puppet/hieradata\n") }
     it { should contain_file('/etc/hiera.yaml').with(
       :ensure => 'link',
@@ -99,6 +100,7 @@ describe 'hiera' do
         let(:params) { {:backends => {'eyaml' => {'data' => 'fake'} } } }
         it { should contain_package('hiera-eyaml') }
         it { should_not contain_package('hiera-eyaml-gpg') }
+        it { should_not contain_package('gpgme') }
       end
 
       context "with eyaml-gpg" do
@@ -108,6 +110,7 @@ describe 'hiera' do
         } } } }
         it { should contain_package('hiera-eyaml') }
         it { should contain_package('hiera-eyaml-gpg') }
+        it { should contain_package('gpgme') }
       end
     end
   end

@@ -104,6 +104,18 @@
 # The install_options of the hiera-gpg package
 # Default: undef
 #
+# [*ruby_gpg_package_name*]
+# The name of the ruby_gpg package
+# Default: gpgme or platform specific
+#
+# [*ruby_gpg_ensure*]
+# The ensure value of the ruby_gpg package
+# Default: present
+#
+# [*ruby_gpg_install_options*]
+# The install_options of the ruby_gpg package
+# Default: undef
+#
 # == Example:
 #
 #    class { 'hiera':
@@ -145,6 +157,10 @@ class hiera (
   $hiera_gpg_package_name     = $hiera::params::hiera_gpg_package_name,
   $hiera_gpg_ensure           = 'present',
   $hiera_gpg_install_options  = undef,
+  $ruby_gpg_package_name      = $hiera::params::ruby_gpg_package_name,
+  $ruby_gpg_ensure            = 'present',
+  $ruby_gpg_install_options   = undef,
+
 ) inherits hiera::params {
 
   if $backends { validate_hash($backends) }

@@ -56,7 +56,12 @@ The above will put the following contents in `hiera.yaml`:
   automatically install the `hiera-gpg` or the `hiera-eyaml` package
   accordingly.
 * In case you specify `gpg_gnupghome` under the eyaml data, then this module
-  will automatically install the `hiera-eyaml-gpg` package.
+  will automatically install the `hiera-eyaml-gpg` and `gpgme` packages. If you
+  are using [puppetserver](https://github.com/puppetlabs/puppet-server) with the
+  [puppetserver_gem](https://github.com/puppetlabs/puppetlabs-puppetserver_gem)
+  provider, you will need to use the `ruby_gpg` package which does not have any
+  C extensions. See https://tickets.puppetlabs.com/browse/SERVER-497 for more
+  info.
 * In case you specify `deep` or `deeper` merge\_behavior, then this module will
   automatically install the `deep_merge` package.
 
@@ -123,3 +128,9 @@ The name of the hiera-gpg package. Default: hiera-gpg or platform specific
 The ensure value of the hiera-gpg package. Default: present
 #### `hiera_gpg_install_options`
 The install\_options of the hiera-gpg package. Default: undef
+#### `ruby_gpg_package_name`
+The name of the ruby_gpg package. Default: gpgme or platform specific
+#### `ruby_gpg_ensure`
+The ensure value of the ruby_gpg package. Default: present
+#### `ruby_gpg_install_options`
+The install\_options of the ruby_gpg package. Default: undef
