@@ -59,8 +59,8 @@ The above will put the following contents in `hiera.yaml`:
   will automatically install the `hiera-eyaml-gpg` and `gpgme` packages. If you
   are using [puppetserver](https://github.com/puppetlabs/puppet-server) with the
   [puppetserver_gem](https://github.com/puppetlabs/puppetlabs-puppetserver_gem)
-  provider, you will need to use the `ruby_gpg` package which does not any C
-  extensions. See https://tickets.puppetlabs.com/browse/SERVER-497 for more
+  provider, you will need to use the `ruby_gpg` package which does not have any
+  C extensions. See https://tickets.puppetlabs.com/browse/SERVER-497 for more
   info.
 * In case you specify `deep` or `deeper` merge\_behavior, then this module will
   automatically install the `deep_merge` package.
