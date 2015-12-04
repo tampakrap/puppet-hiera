@@ -1,6 +1,6 @@
 {
   "name": "tampakrap-hiera",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": ["Theo Chatzimichos"],
   "license": "Apache-2.0",
   "summary": "Manage hiera packages and hiera.yaml config file",
@@ -40,7 +40,7 @@
     },
     {
       "name": "ploperations/puppet",
-      "version_requirement": ">= 0.14.0"
+      "version_requirement": ">= 1.0.0"
     }
   ],
   "requirements": [
