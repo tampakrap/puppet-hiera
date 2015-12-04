@@ -8,6 +8,8 @@ shared_examples_for 'everywhere' do
 end
 
 describe 'hiera' do
+  let(:facts) { { :operatingsystem => 'openSUSE' } }
+
   context "when using defaults" do
     it_behaves_like 'everywhere'
     it { should_not contain_package('hiera-gpg') }
@@ -61,6 +63,16 @@ describe 'hiera' do
     context "when using the percent hack" do
       let(:params) { {:hierarchy => ['is_virtual/_percent_{::is_virtual}', 'common']} }
       it { should contain_file('/etc/puppet/hiera.yaml').with_content("---\n:backends:\n  - yaml\n:yaml:\n  :datadir: /etc/puppet/hieradata\n:hierarchy:\n  - \"is_virtual/%{::is_virtual}\"\n  - common\n") }
+    end
+  end
+
+  [true, false].each do |restart_puppetmaster|
+    context "when restart_puppetmaster => #{restart_puppetmaster}" do
+      let(:params) { {:restart_puppetmaster => restart_puppetmaster} }
+      it_behaves_like 'everywhere'
+      it { should contain_class('puppet::server') } if restart_puppetmaster == true
+      it { should contain_file('/etc/puppet/hiera.yaml').that_notifies(['Service[puppetmaster]']) } if restart_puppetmaster == true
+      it { should_not contain_file('/etc/puppet/hiera.yaml').that_notifies(['Service[puppetmaster]']) } if restart_puppetmaster == false
     end
   end
 

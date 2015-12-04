@@ -64,6 +64,9 @@ The above will put the following contents in `hiera.yaml`:
   info.
 * In case you specify `deep` or `deeper` merge\_behavior, then this module will
   automatically install the `deep_merge` package.
+* If `hiera::restart_puppetmaster` is set to `true`, then any change to the
+  `/etc/puppet/hiera.yaml` file will trigger restart of the web server that
+  serves the Puppet Master.
 
 ### Classes
 
@@ -129,8 +132,10 @@ The ensure value of the hiera-gpg package. Default: present
 #### `hiera_gpg_install_options`
 The install\_options of the hiera-gpg package. Default: undef
 #### `ruby_gpg_package_name`
-The name of the ruby_gpg package. Default: gpgme or platform specific
+The name of the `ruby_gpg package`. Default: gpgme or platform specific
 #### `ruby_gpg_ensure`
-The ensure value of the ruby_gpg package. Default: present
+The ensure value of the `ruby_gpg package`. Default: present
 #### `ruby_gpg_install_options`
-The install\_options of the ruby_gpg package. Default: undef
+The install\_options of the `ruby_gpg package`. Default: undef
+#### `restart_puppetmaster`
+Restarts the web server that runs the Puppet Master. Default: false

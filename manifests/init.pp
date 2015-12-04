@@ -116,6 +116,10 @@
 # The install_options of the ruby_gpg package
 # Default: undef
 #
+# [*restart_puppetmaster*]
+# Restarts the web server that runs the Puppet Master
+# Default: false
+#
 # == Example:
 #
 #    class { 'hiera':
@@ -129,7 +133,6 @@
 # == See also:
 #
 # tests/init.pp for a more complex scenario
-#
 #
 class hiera (
   $backends                   = {'yaml' => {'datadir' => '/etc/puppet/hieradata'} },
@@ -160,12 +163,13 @@ class hiera (
   $ruby_gpg_package_name      = $hiera::params::ruby_gpg_package_name,
   $ruby_gpg_ensure            = 'present',
   $ruby_gpg_install_options   = undef,
-
+  $restart_puppetmaster       = false,
 ) inherits hiera::params {
 
   if $backends { validate_hash($backends) }
   if $hierarchy { validate_array($hierarchy) }
   validate_bool($config_link)
+  validate_bool($restart_puppetmaster)
 
   if $merge_behavior {
     $merge_behavior_options = ['native', 'deep', 'deeper']
@@ -173,6 +177,11 @@ class hiera (
   }
 
   include hiera::package
+
+  if $restart_puppetmaster {
+    include puppet::server
+    File[$config_path] ~> Service[$puppet::server::service]
+  }
 
   file { $config_path:
     ensure  => file,
